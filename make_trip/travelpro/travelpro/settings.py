@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-zcsn1#zef29=*gji#h^_)9bk$2b+xja1lt3j$y=c@$)36h8(h(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['http://108.181.161.189/']
+ALLOWED_HOSTS = ['108.181.161.189']
 
 
 import mimetypes
@@ -122,7 +122,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_ROOT = ''
+STATIC_URL = '/static/'
+STATICFILES_DIRS = ('static',)
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
