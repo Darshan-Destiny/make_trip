@@ -4,7 +4,6 @@ from .models import Destination
 # Create your views here.
 def index(request):
     d = Destination.objects.all()
-    print("ddddd////",d)
     return render(request,'index.html',{'d':d})
 
 def index2(request):
