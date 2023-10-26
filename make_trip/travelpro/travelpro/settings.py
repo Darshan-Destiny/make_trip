@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-zcsn1#zef29=*gji#h^_)9bk$2b+xja1lt3j$y=c@$)36h8(h(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['http://108.181.161.189/']
 
 
 import mimetypes
