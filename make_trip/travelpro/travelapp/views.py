@@ -1,10 +1,12 @@
 from django.shortcuts import render
-from .models import Destination
+from .models import Destination,Package,Offer
 
 # Create your views here.
 def index(request):
-    d = Destination.objects.all()
-    return render(request,'index.html',{'d':d})
+    d = Destination.objects.all()[:4]
+    p = Package.objects.all()[:3]
+    o = Offer.objects.all()
+    return render(request,'index.html',{'d':d,'p':p,'o':o})
 
 def index2(request):
     return render(request,'index2.html')
@@ -48,7 +50,8 @@ def contact(request):
     return render(request,'contact.html')
 
 def destination(request):
-    return render(request,'destination.html')
+    d = Destination.objects.all()
+    return render(request,'destination.html',{'d':d})
 
 
 
@@ -98,7 +101,8 @@ def tour_guide(request):
     return render(request,'tour-guide.html')
 
 def tour_packages(request):
-    return render(request,'tour-packages.html')
+    p = Package.objects.all()[:3]
+    return render(request,'tour-packages.html',{'p':p})
 
 def wishlist_page(request):
     return render(request,'wishlist-page.html')
@@ -148,11 +152,21 @@ def user_edit(request):
     return render(request,'user-edit.html')
 
 
+def usa(request):
+    return render(request,'usa.html')
+def indonesia(request):
+    return render(request,'indonesia.html')
+
+def toronto(request):
+    return render(request,'toronto.html')
+def india(request):
+    return render(request,'india.html')
+
 def thailand(request):
     return render(request,'thailand.html')
 
-def norway(request):
-    return render(request,'norway.html')
+def japan(request):
+    return render(request,'japan.html')
 
 def new_zealand(request):
     return render(request,'new_zealand.html')
@@ -160,7 +174,8 @@ def new_zealand(request):
 def singapore(request):
     return render(request,'singapore.html')
 
-
+def dubai(request):
+    return render(request,'dubai.html')
 
 
 

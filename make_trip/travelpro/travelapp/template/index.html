@@ -4,7 +4,7 @@
             <section class="home-slider-section">
                <div class="home-slider">
                   <div class="home-banner-items">
-                     <div class="banner-inner-wrap" style="background-image: url(/static/assets/images/slider-1.jpg);"></div>
+                     <div class="banner-inner-wrap" style="background-image: url(/static/assets/images/bg2.jpg);"></div>
                         <div class="banner-content-wrap">
                            <div class="container">
                               <div class="banner-content text-center">
@@ -17,7 +17,7 @@
                      <div class="overlay"></div>
                   </div>
                   <div class="home-banner-items">
-                     <div class="banner-inner-wrap" style="background-image: url(/static/assets/images/slider-2.jpg);"></div>
+                     <div class="banner-inner-wrap" style="background-image: url(/static/assets/images/bg3.jpg);"></div>
                         <div class="banner-content-wrap">
                            <div class="container">
                               <div class="banner-content text-center">
@@ -79,88 +79,89 @@
                      </div>
                   </div>
                   <div class="destination-inner destination-three-column">
-                     <div class="row">
-                        <div class="col-lg-7">
                            <div class="row">
-                              <div class="col-sm-6">
+                                {% for i in d %}
+                              <div class="col-sm-3">
                                  <div class="desti-item overlay-desti-item">
                                     <figure class="desti-image">
-                                       <img src="/static/assets/images/des-img1.jpg" alt="">
+                                       <img src="{{i.image.url}}" alt="">
                                     </figure>
                                     <div class="meta-cat bg-meta-cat">
-                                       <a href="/thailand/">THAILAND</a>
+                                       <a href="/usa/">{{i.country_name}}</a>
                                     </div>
                                     <div class="desti-content">
                                        <h3>
-                                          <a href="#">Disney Land</a>
+                                          <a href="#">{{i.location_name}}</a>
                                        </h3>
                                        <div class="rating-start" title="Rated 5 out of 4">
                                           <span style="width: 53%"></span>
                                        </div>
                                     </div>
                                  </div>
+
                               </div>
-                              <div class="col-sm-6">
-                                 <div class="desti-item overlay-desti-item">
-                                    <figure class="desti-image">
-                                       <img src="/static/assets/images/des-img2.jpg" alt="">
-                                    </figure>
-                                    <div class="meta-cat bg-meta-cat">
-                                       <a href="/norway/">NORWAY</a>
-                                    </div>
-                                    <div class="desti-content">
-                                       <h3>
-                                          <a href="#">Besseggen Ridge</a>
-                                       </h3>
-                                       <div class="rating-start" title="Rated 5 out of 5">
-                                          <span style="width: 100%"></span>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </div>
+                              {% endfor %}
                            </div>
-                        </div>
-                        <div class="col-lg-5">
-                           <div class="row">
-                              <div class="col-md-6 col-xl-12">
-                                 <div class="desti-item overlay-desti-item">
-                                    <figure class="desti-image">
-                                       <img src="/static/assets/images/des-img3.jpg" alt="">
-                                    </figure>
-                                    <div class="meta-cat bg-meta-cat">
-                                       <a href="/new_zealand/">NEW ZEALAND</a>
-                                    </div>
-                                    <div class="desti-content">
-                                       <h3>
-                                          <a href="#">Oxolotan City</a>
-                                       </h3>
-                                       <div class="rating-start" title="Rated 5 out of 5">
-                                          <span style="width: 100%"></span>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </div>
-                              <div class="col-md-6 col-xl-12">
-                                 <div class="desti-item overlay-desti-item">
-                                    <figure class="desti-image">
-                                       <img src="/static/assets/images/des-img4.jpg" alt="">
-                                    </figure>
-                                    <div class="meta-cat bg-meta-cat">
-                                       <a href="/singapore/">SINGAPORE</a>
-                                    </div>
-                                    <div class="desti-content">
-                                       <h3>
-                                          <a href="#">Marina Bay Sand City</a>
-                                       </h3>
-                                       <div class="rating-start" title="Rated 5 out of 4">
-                                          <span style="width: 60%"></span>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </div>
+<!--                              <div class="col-sm-6">-->
+<!--                                 <div class="desti-item overlay-desti-item">-->
+<!--                                    <figure class="desti-image">-->
+<!--                                       <img src="/static/assets/images/des-img2.jpg" alt="">-->
+<!--                                    </figure>-->
+<!--                                    <div class="meta-cat bg-meta-cat">-->
+<!--                                       <a href="/thailand/">NORWAY</a>-->
+<!--                                    </div>-->
+<!--                                    <div class="desti-content">-->
+<!--                                       <h3>-->
+<!--                                          <a href="#">Besseggen Ridge</a>-->
+<!--                                       </h3>-->
+<!--                                       <div class="rating-start" title="Rated 5 out of 5">-->
+<!--                                          <span style="width: 100%"></span>-->
+<!--                                       </div>-->
+<!--                                    </div>-->
+<!--                                 </div>-->
+<!--                              </div>-->
+<!--                           </div>-->
+<!--                        </div>-->
+<!--                        <div class="col-lg-5">-->
+<!--                           <div class="row">-->
+<!--                              <div class="col-md-6 col-xl-12">-->
+<!--                                 <div class="desti-item overlay-desti-item">-->
+<!--                                    <figure class="desti-image">-->
+<!--                                       <img src="/static/assets/images/des-img3.jpg" alt="">-->
+<!--                                    </figure>-->
+<!--                                    <div class="meta-cat bg-meta-cat">-->
+<!--                                       <a href="/new_zealand/">NEW ZEALAND</a>-->
+<!--                                    </div>-->
+<!--                                    <div class="desti-content">-->
+<!--                                       <h3>-->
+<!--                                          <a href="#">Oxolotan City</a>-->
+<!--                                       </h3>-->
+<!--                                       <div class="rating-start" title="Rated 5 out of 5">-->
+<!--                                          <span style="width: 100%"></span>-->
+<!--                                       </div>-->
+<!--                                    </div>-->
+<!--                                 </div>-->
+<!--                              </div>-->
+<!--                              <div class="col-md-6 col-xl-12">-->
+<!--                                 <div class="desti-item overlay-desti-item">-->
+<!--                                    <figure class="desti-image">-->
+<!--                                       <img src="/static/assets/images/des-img4.jpg" alt="">-->
+<!--                                    </figure>-->
+<!--                                    <div class="meta-cat bg-meta-cat">-->
+<!--                                       <a href="/singapore/">SINGAPORE</a>-->
+<!--                                    </div>-->
+<!--                                    <div class="desti-content">-->
+<!--                                       <h3>-->
+<!--                                          <a href="#">Marina Bay Sand City</a>-->
+<!--                                       </h3>-->
+<!--                                       <div class="rating-start" title="Rated 5 out of 4">-->
+<!--                                          <span style="width: 60%"></span>-->
+<!--                                       </div>-->
+<!--                                    </div>-->
+<!--                                 </div>-->
+<!--                              </div>-->
                            </div>
-                        </div>
-                     </div>
+
                      <div class="btn-wrap text-center">
                         <a href="/destination/" class="button-primary">MORE DESTINATION</a>
                      </div>
@@ -181,16 +182,17 @@
                   </div>
                   <div class="package-inner">
                      <div class="row">
+                        {% for i in p %}
                         <div class="col-lg-4 col-md-6">
                            <div class="package-wrap">
                               <figure class="feature-image">
                                  <a href="/package-detail/">
-                                    <img src="/static/assets/images/des-img5.jpg" alt="">
+                                    <img src="{{i.image.url}}" alt="">
                                  </a>
                               </figure>
                               <div class="package-price">
                                  <h6>
-                                    <span>$1,900 </span> / per person
+                                    <span>{{i.price}} </span> / per person
                                  </h6>
                               </div>
                               <div class="package-content-wrap">
@@ -198,21 +200,21 @@
                                     <ul>
                                        <li>
                                           <i class="far fa-clock"></i>
-                                          7D/6N
+                                          {{i.no_of_day}}D/{{i.no_of_night}}N
                                        </li>
                                        <li>
                                           <i class="fas fa-user-friends"></i>
-                                          People: 5
+                                          People:{{i.people}}
                                        </li>
                                        <li>
                                           <i class="fas fa-map-marker-alt"></i>
-                                          Malaysia
+                                          {{i.location_name}}
                                        </li>
                                     </ul>
                                  </div>
                                  <div class="package-content">
                                     <h3>
-                                       <a href="#">Sunset view of beautiful lakeside resident</a>
+                                       <a href="#">{{i.desc}}</a>
                                     </h3>
                                     <div class="review-area">
                                        <span class="review-text">(25 reviews)</span>
@@ -220,56 +222,7 @@
                                           <span style="width: 60%"></span>
                                        </div>
                                     </div>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit luctus nec ullam. Ut elit tellus, luctus nec ullam elit tellpus.</p>
-                                    <div class="btn-wrap">
-                                       <a href="/package-detail/" class="button-text width-6">Book Now<i class="fas fa-arrow-right"></i></a>
-                                       <a href="/package-detaild/" class="button-text width-6">Book Now<i class="fas fa-arrow-right"></i></a>
-                                       <a href="#" class="button-text width-6">Wish List<i class="far fa-heart"></i></a>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6">
-                           <div class="package-wrap">
-                              <figure class="feature-image">
-                                 <a href="/package-detail/">
-                                    <img src="/static/assets/images/des-img6.jpg" alt="">
-                                 </a>
-                              </figure>
-                              <div class="package-price">
-                                 <h6>
-                                    <span>$1,230 </span> / per person
-                                 </h6>
-                              </div>
-                              <div class="package-content-wrap">
-                                 <div class="package-meta text-center">
-                                    <ul>
-                                       <li>
-                                          <i class="far fa-clock"></i>
-                                          5D/4N
-                                       </li>
-                                       <li>
-                                          <i class="fas fa-user-friends"></i>
-                                          People: 8
-                                       </li>
-                                       <li>
-                                          <i class="fas fa-map-marker-alt"></i>
-                                          Canada
-                                       </li>
-                                    </ul>
-                                 </div>
-                                 <div class="package-content">
-                                    <h3>
-                                       <a href="#">Experience the natural beauty of island</a>
-                                    </h3>
-                                    <div class="review-area">
-                                       <span class="review-text">(17 reviews)</span>
-                                       <div class="rating-start" title="Rated 5 out of 5">
-                                          <span style="width: 100%"></span>
-                                       </div>
-                                    </div>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit luctus nec ullam. Ut elit tellus, luctus nec ullam elit tellpus.</p>
+                                    <p>{{i.detail_desc}}</p>
                                     <div class="btn-wrap">
                                        <a href="/package-detail/" class="button-text width-6">Book Now<i class="fas fa-arrow-right"></i></a>
                                        <a href="#" class="button-text width-6">Wish List<i class="far fa-heart"></i></a>
@@ -278,54 +231,103 @@
                               </div>
                            </div>
                         </div>
-                        <div class="col-lg-4 col-md-6">
-                           <div class="package-wrap">
-                              <figure class="feature-image">
-                                 <a href="/package-detail/">
-                                    <img src="/static/assets/images/des-img7.jpg" alt="">
-                                 </a>
-                              </figure>
-                              <div class="package-price">
-                                 <h6>
-                                    <span>$2,000 </span> / per person
-                                 </h6>
-                              </div>
-                              <div class="package-content-wrap">
-                                 <div class="package-meta text-center">
-                                    <ul>
-                                       <li>
-                                          <i class="far fa-clock"></i>
-                                          6D/5N
-                                       </li>
-                                       <li>
-                                          <i class="fas fa-user-friends"></i>
-                                          People: 6
-                                       </li>
-                                       <li>
-                                          <i class="fas fa-map-marker-alt"></i>
-                                          Portugal
-                                       </li>
-                                    </ul>
-                                 </div>
-                                 <div class="package-content">
-                                    <h3>
-                                       <a href="#">Vacation to the water city of Portugal</a>
-                                    </h3>
-                                    <div class="review-area">
-                                       <span class="review-text">(22 reviews)</span>
-                                       <div class="rating-start" title="Rated 5 out of 5">
-                                          <span style="width: 80%"></span>
-                                       </div>
-                                    </div>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit luctus nec ullam. Ut elit tellus, luctus nec ullam elit tellpus.</p>
-                                    <div class="btn-wrap">
-                                       <a href="/package-detail/" class="button-text width-6">Book Now<i class="fas fa-arrow-right"></i></a>
-                                       <a href="#" class="button-text width-6">Wish List<i class="far fa-heart"></i></a>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
+                        {% endfor %}
+<!--                        <div class="col-lg-4 col-md-6">-->
+<!--                           <div class="package-wrap">-->
+<!--                              <figure class="feature-image">-->
+<!--                                 <a href="/package-detail/">-->
+<!--                                    <img src="/static/assets/images/des-img6.jpg" alt="">-->
+<!--                                 </a>-->
+<!--                              </figure>-->
+<!--                              <div class="package-price">-->
+<!--                                 <h6>-->
+<!--                                    <span>$1,230 </span> / per person-->
+<!--                                 </h6>-->
+<!--                              </div>-->
+<!--                              <div class="package-content-wrap">-->
+<!--                                 <div class="package-meta text-center">-->
+<!--                                    <ul>-->
+<!--                                       <li>-->
+<!--                                          <i class="far fa-clock"></i>-->
+<!--                                          5D/4N-->
+<!--                                       </li>-->
+<!--                                       <li>-->
+<!--                                          <i class="fas fa-user-friends"></i>-->
+<!--                                          People: 8-->
+<!--                                       </li>-->
+<!--                                       <li>-->
+<!--                                          <i class="fas fa-map-marker-alt"></i>-->
+<!--                                          Canada-->
+<!--                                       </li>-->
+<!--                                    </ul>-->
+<!--                                 </div>-->
+<!--                                 <div class="package-content">-->
+<!--                                    <h3>-->
+<!--                                       <a href="#">Experience the natural beauty of island</a>-->
+<!--                                    </h3>-->
+<!--                                    <div class="review-area">-->
+<!--                                       <span class="review-text">(17 reviews)</span>-->
+<!--                                       <div class="rating-start" title="Rated 5 out of 5">-->
+<!--                                          <span style="width: 100%"></span>-->
+<!--                                       </div>-->
+<!--                                    </div>-->
+<!--                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit luctus nec ullam. Ut elit tellus, luctus nec ullam elit tellpus.</p>-->
+<!--                                    <div class="btn-wrap">-->
+<!--                                       <a href="/package-detail/" class="button-text width-6">Book Now<i class="fas fa-arrow-right"></i></a>-->
+<!--                                       <a href="#" class="button-text width-6">Wish List<i class="far fa-heart"></i></a>-->
+<!--                                    </div>-->
+<!--                                 </div>-->
+<!--                              </div>-->
+<!--                           </div>-->
+<!--                        </div>-->
+<!--                        <div class="col-lg-4 col-md-6">-->
+<!--                           <div class="package-wrap">-->
+<!--                              <figure class="feature-image">-->
+<!--                                 <a href="/package-detail/">-->
+<!--                                    <img src="/static/assets/images/des-img7.jpg" alt="">-->
+<!--                                 </a>-->
+<!--                              </figure>-->
+<!--                              <div class="package-price">-->
+<!--                                 <h6>-->
+<!--                                    <span>$2,000 </span> / per person-->
+<!--                                 </h6>-->
+<!--                              </div>-->
+<!--                              <div class="package-content-wrap">-->
+<!--                                 <div class="package-meta text-center">-->
+<!--                                    <ul>-->
+<!--                                       <li>-->
+<!--                                          <i class="far fa-clock"></i>-->
+<!--                                          6D/5N-->
+<!--                                       </li>-->
+<!--                                       <li>-->
+<!--                                          <i class="fas fa-user-friends"></i>-->
+<!--                                          People: 6-->
+<!--                                       </li>-->
+<!--                                       <li>-->
+<!--                                          <i class="fas fa-map-marker-alt"></i>-->
+<!--                                          Portugal-->
+<!--                                       </li>-->
+<!--                                    </ul>-->
+<!--                                 </div>-->
+<!--                                 <div class="package-content">-->
+<!--                                    <h3>-->
+<!--                                       <a href="#">Vacation to the water city of Portugal</a>-->
+<!--                                    </h3>-->
+<!--                                    <div class="review-area">-->
+<!--                                       <span class="review-text">(22 reviews)</span>-->
+<!--                                       <div class="rating-start" title="Rated 5 out of 5">-->
+<!--                                          <span style="width: 80%"></span>-->
+<!--                                       </div>-->
+<!--                                    </div>-->
+<!--                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit luctus nec ullam. Ut elit tellus, luctus nec ullam elit tellpus.</p>-->
+<!--                                    <div class="btn-wrap">-->
+<!--                                       <a href="/package-detail/" class="button-text width-6">Book Now<i class="fas fa-arrow-right"></i></a>-->
+<!--                                       <a href="#" class="button-text width-6">Wish List<i class="far fa-heart"></i></a>-->
+<!--                                    </div>-->
+<!--                                 </div>-->
+<!--                              </div>-->
+<!--                           </div>-->
+<!--                        </div>-->
                      </div>
                      <div class="btn-wrap text-center">
                         <a href="/tour-packages/" class="button-primary">VIEW ALL PACKAGES</a>
@@ -546,82 +548,84 @@
                   </div>
                   <div class="special-inner">
                      <div class="row">
+                        {% for i in o %}
                         <div class="col-md-6 col-lg-4">
                            <div class="special-item">
                               <figure class="special-img">
-                                 <img src="/static/assets/images/des-img9.jpg" alt="">
+                                 <img src="{{i.image.url}}" alt="">
                               </figure>
                               <div class="badge-dis">
                                  <span>
-                                    <strong>20%</strong>
+                                    <strong>{{i.off_percentage}}%</strong>
                                     off
                                  </span>
                               </div>
                               <div class="special-content">
                                  <div class="meta-cat">
-                                    <a href="#">CANADA</a>
+                                    <a href="#">{{i.country_name}}</a>
                                  </div>
                                  <h3>
-                                    <a href="#">Experience the natural beauty of glacier</a>
+                                    <a href="#">{{i.desc}}</a>
                                  </h3>
                                  <div class="package-price">
                                     Price:
-                                    <del>$1500</del>
-                                    <ins>$1200</ins>
+                                    <del>${{i.real_price}}</del>
+                                    <ins>${{i.cut_of_price}}</ins>
                                  </div>
                               </div>
                            </div>
                         </div>
-                        <div class="col-md-6 col-lg-4">
-                           <div class="special-item">
-                              <figure class="special-img">
-                                 <img src="/static/assets/images/des-img10.jpg" alt="">
-                              </figure>
-                              <div class="badge-dis">
-                                 <span>
-                                    <strong>15%</strong>
-                                    off
-                                 </span>
-                              </div>
-                              <div class="special-content">
-                                 <div class="meta-cat">
-                                    <a href="#">NEW ZEALAND</a>
-                                 </div>
-                                 <h3>
-                                    <a href="#">Trekking to the mountain camp site</a>
-                                 </h3>
-                                 <div class="package-price">
-                                    Price:
-                                    <del>$1300</del>
-                                    <ins>$1105</ins>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                        <div class="col-md-6 col-lg-4">
-                           <div class="special-item">
-                              <figure class="special-img">
-                                 <img src="/static/assets/images/des-img11.jpg" alt="">
-                              </figure>
-                              <div class="badge-dis">
-                                 <span>
-                                    <strong>15%</strong>
-                                    off
-                                 </span>
-                              </div>
-                              <div class="special-content">
-                                 <div class="meta-cat">
-                                    <a href="#">MALAYSIA</a>
-                                 </div>
-                                 <h3>
-                                    <a href="#">Sunset view of beautiful lakeside city</a>
-                                 </h3>
-                                 <div class="package-price">
-                                    Price:
-                                    <del>$1800</del>
-                                    <ins>$1476</ins>
-                                 </div>
-                              </div>
+                        {% endfor %}
+<!--                        <div class="col-md-6 col-lg-4">-->
+<!--                           <div class="special-item">-->
+<!--                              <figure class="special-img">-->
+<!--                                 <img src="/static/assets/images/des-img10.jpg" alt="">-->
+<!--                              </figure>-->
+<!--                              <div class="badge-dis">-->
+<!--                                 <span>-->
+<!--                                    <strong>15%</strong>-->
+<!--                                    off-->
+<!--                                 </span>-->
+<!--                              </div>-->
+<!--                              <div class="special-content">-->
+<!--                                 <div class="meta-cat">-->
+<!--                                    <a href="#">NEW ZEALAND</a>-->
+<!--                                 </div>-->
+<!--                                 <h3>-->
+<!--                                    <a href="#">Trekking to the mountain camp site</a>-->
+<!--                                 </h3>-->
+<!--                                 <div class="package-price">-->
+<!--                                    Price:-->
+<!--                                    <del>$1300</del>-->
+<!--                                    <ins>$1105</ins>-->
+<!--                                 </div>-->
+<!--                              </div>-->
+<!--                           </div>-->
+<!--                        </div>-->
+<!--                        <div class="col-md-6 col-lg-4">-->
+<!--                           <div class="special-item">-->
+<!--                              <figure class="special-img">-->
+<!--                                 <img src="/static/assets/images/des-img11.jpg" alt="">-->
+<!--                              </figure>-->
+<!--                              <div class="badge-dis">-->
+<!--                                 <span>-->
+<!--                                    <strong>15%</strong>-->
+<!--                                    off-->
+<!--                                 </span>-->
+<!--                              </div>-->
+<!--                              <div class="special-content">-->
+<!--                                 <div class="meta-cat">-->
+<!--                                    <a href="#">MALAYSIA</a>-->
+<!--                                 </div>-->
+<!--                                 <h3>-->
+<!--                                    <a href="#">Sunset view of beautiful lakeside city</a>-->
+<!--                                 </h3>-->
+<!--                                 <div class="package-price">-->
+<!--                                    Price:-->
+<!--                                    <del>$1800</del>-->
+<!--                                    <ins>$1476</ins>-->
+<!--                                 </div>-->
+<!--                              </div>-->
                            </div>
                         </div>
                      </div>
@@ -963,8 +967,8 @@
                </div>
             </div>
          <!-- header html end -->
-      </div>
 
+      </div>
       <!-- JavaScript -->
       <script src="/static/assets/js/jquery.js"></script>
       <script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>

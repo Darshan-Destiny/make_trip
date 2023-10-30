@@ -17,27 +17,41 @@
       <title>Travele | Travel & Tour HTML5 template </title>
 </head>
 <body>
-    <div class="login-page" style="background-image: url(assets/images/bg.jpg);">
+    <div class="login-page" style="background-image: url(/static/assets2/images/bg.jpg);">
         <div class="login-from-wrap">
-            <form class="login-from">
+            <form class="login-from" action="login" method="post">
+                {% csrf_token %}
                 <h1 class="site-title">
-                    <a href="#">
-                        <img src="assets/images/logo.png" alt="">
+                    <a href="/index/">
+                        <img src="/static/assets2/images/logo.png" alt="">
                     </a>
                 </h1>
                 <div class="form-group">
-                    <label for="first_name1">User Name</label>
-                    <input type="text" class="validate">
+                    <label>User Name</label>
+                    <input id="username" type="text" class="validate" name="username">
                 </div>
                 <div class="form-group">
-                    <label for="last_name">Password</label>
-                    <input id="last_name" type="password" class="validate">
+                    <label>Password</label>
+                    <input id="password" type="password" class="validate" name="password">
                 </div>
                 <div class="form-group">
-                    <a class="button-primary" href="dashboard.html">Login</a>
+                    <button class="button-primary">Login</button>
                 </div>
-                <a href="forgot.html" class="for-pass">Forgot Password?</a>
+
+
+                <div class="form-group">
+                <a href="/account/register" class="for-pass">Register?</a>
+                </div>
+
+
+<!--                <a href="forgot.html" class="for-pass">Forgot Password?</a>-->
             </form>
+
+            <div>
+                {% for message in messages %}
+                <h3>{{message}}</h3>
+                {% endfor %}
+            </div>
         </div>
     </div>
 

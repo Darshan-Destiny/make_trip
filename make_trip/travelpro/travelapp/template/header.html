@@ -206,15 +206,24 @@
 <!--                                 <li>-->
 <!--                                    <a href="/product-detail/">Shop Single</a>-->
 <!--                                 </li>-->
+                                  <li>
+                                    <a href="/account/register">Register</a>
+                                 </li>
+                                 <li>
+                                    <a href="/account/login">Login</a>
+                                 </li>
+                                  <li>
+                                    <a href="/about/">About Us</a>
+                                 </li>
                                  <li>
                                     <a href="/contact/">Contact US</a>
                                  </li>
 <!--                                 <li>-->
 <!--                                    <a href="/product-checkout/">Shop Checkout</a>-->
 <!--                                 </li>-->
-                                 <li>
-                                    <a href="/about/">About Us</a>
-                                 </li>
+
+
+
                               </ul>
 
 
@@ -300,13 +309,30 @@
 
                      <!--plus icon-->
 
+{% if user.is_authenticated %}
+                   <div class="header-btn">
 
+                     <a href="/account/login" class="button-primary">{{user.username}}</a>
 
-
-                  <div class="header-btn">
-                     <a href="/db-booking/" class="button-primary">BOOK NOW</a>
+                       <a href="/account/logout" class="button-primary">logout</a>
+{% else %}
+                       <a href="/account/login" class="button-primary">Login</a>
                   </div>
                </div>
+                {% endif %}
             </div>
+
+
+
+<!--                {% if user.is_authenticated %}-->
+<!--                  <div class="header-btn">-->
+<!--                     <a href="/account/login" class="button-primary">{{user.username}}</a>-->
+<!--                      <a href="/account/logout" class="button-primary">logout</a>-->
+<!--                            {% else %}-->
+<!--                  </div>-->
+
+<!--               </div>-->
+<!--                {% endif %}-->
+<!--            </div>-->
             <div class="mobile-menu-container"></div>
          </header>
