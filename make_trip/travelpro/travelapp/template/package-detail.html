@@ -14,28 +14,31 @@
             <!-- Inner Banner html end-->
             <div class="single-tour-section">
                <div class="container">
+
                   <div class="row">
+                     {% for i in data %}
                      <div class="col-lg-8">
                         <div class="single-tour-inner">
                            <h2>EXPERIENCE THE NATURAL BEAUTY OF ISLAND</h2>
                            <figure class="feature-image">
-                              <img src="/static/assets/images/img27.jpg" alt="">
+                              <img src="{{i.image.url}}" alt="">
                               <div class="package-meta text-center">
                                  <ul>
                                     <li>
                                        <i class="far fa-clock"></i>
-                                       6 days / 5 night
+                                       {{i.no_of_day}}D/{{i.no_of_night}}N
                                     </li>
                                     <li>
                                        <i class="fas fa-user-friends"></i>
-                                       People: 4
+                                       People: {{i.people}}
                                     </li>
                                     <li>
                                        <i class="fas fa-map-marked-alt"></i>
-                                       Norway
+                                       {{i.location_name}}
                                     </li>
                                  </ul>
                               </div>
+
                            </figure>
                            <div class="tab-container">
                               <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -58,7 +61,7 @@
                                        <p>Occaecat pariatur! Quaerat ligula, ab, consequuntur orci mus ultricies praesent aute blandit beatae nisl aut, totam mauris rhoncus? Tellus netus fringilla class auctor dui. Dolores excepteur, doloribus, blanditiis aliquip nisl. Occaecat iusto? Provident sociis rerum. Amet, asperiores molestie varius eos! Libero, fermentum fermentum totam! Sunt praesentium, totam. Excepteur platea nisl. Convallis aliquam? Iaculis erat ipsa molestie, quod, vestibulum reiciendis, maxime nostra, integer unde officiis quo integer unde officiis quo.</p>
                                        <p>Occaecat pariatur! Quaerat ligula, ab, consequuntur orci mus ultricies praesent aute blandit beatae nisl aut, totam mauris rhoncus? Tellus netus fringilla class auctor dui. Dolores excepteur, doloribus, blanditiis aliquip nisl..</p>
                                        <ul>
-                                         <li>- Travel cancellation insurance</li> 
+                                         <li>- Travel cancellation insurance</li>
                                          <li>- Breakfast and dinner included</li>
                                          <li>- Health care included</li>
                                          <li>- Transfer to the airport and return to the agency</li>
@@ -227,22 +230,22 @@
                               <div class="single-tour-slider">
                                  <div class="single-tour-item">
                                     <figure class="feature-image">
-                                       <img src="/static/assets/images/img28.jpg" alt="">
+                                       <img src="/static/assets/images/img27.jpg" alt="">
                                     </figure>
                                  </div>
                                  <div class="single-tour-item">
                                     <figure class="feature-image">
-                                       <img src="/static/assets/images/img29.jpg" alt="">
+                                       <img src="/static/assets/images/img27.jpg" alt="">
                                     </figure>
                                  </div>
                                  <div class="single-tour-item">
                                     <figure class="feature-image">
-                                       <img src="/static/assets/images/img32.jpg" alt="">
+                                       <img src="/static/assets/images/img27.jpg" alt="">
                                     </figure>
                                  </div>
                                  <div class="single-tour-item">
                                     <figure class="feature-image">
-                                       <img src="/static/assets/images/img33.jpg" alt="">
+                                       <img src="/static/assets/images/img27.jpg" alt="">
                                     </figure>
                                  </div>
                               </div>
@@ -253,7 +256,7 @@
                         <div class="sidebar">
                            <div class="package-price">
                               <h5 class="price">
-                                 <span>$649</span> / per person
+                                 <span>${{i.price}}</span>
                               </h5>
                               <div class="start-wrap">
                                  <div class="rating-start" title="Rated 5 out of 5">
@@ -261,28 +264,35 @@
                                  </div>
                               </div>
                            </div>
+
+                           {% endfor %}
                            <div class="widget-bg booking-form-wrap">
                               <h4 class="bg-title">Booking</h4>
-                              <form class="booking-form">
+                              {% for object in data %}
+                              <form class="booking-form" action="{% url 'savedata' object.id  %}" method="post">
+                                 {% endfor %}
+                                 {% csrf_token %}
                                  <div class="row">
                                     <div class="col-sm-12">
                                        <div class="form-group">
-                                          <input name="name_booking" type="text" placeholder="Full Name">
+                                          <input name="name"  type="text" placeholder="Full Name">
                                        </div>
                                     </div>
                                     <div class="col-sm-12">
                                        <div class="form-group">
-                                          <input name="email_booking" type="text" placeholder="Email">
+                                          <input name="email" type="email" placeholder="Email">
                                        </div>
                                     </div>
+
                                     <div class="col-sm-12">
                                        <div class="form-group">
-                                          <input name="phone_booking" type="text" placeholder="Number">
+                                          <input name="number" type="text" placeholder="Number">
                                        </div>
                                     </div>
+                                    <label>Checkin Date</label>
                                     <div class="col-sm-12">
                                        <div class="form-group">
-                                          <input class="input-date-picker" type="text" name="s" autocomplete="off" readonly="readonly" placeholder="Date">
+                                          <input  type="date" name="booking_date"    placeholder="Date">
                                        </div>
                                     </div>
                                     <div class="col-sm-12">
@@ -291,7 +301,7 @@
                                     <div class="col-sm-6">
                                        <div class="form-group">
                                           <label class="checkbox-list">
-                                             <input type="checkbox" name="s">
+                                             <input type="checkbox" name="select" >
                                              <span class="custom-checkbox"></span>
                                              Tour guide
                                           </label>
@@ -300,16 +310,16 @@
                                     <div class="col-sm-6">
                                        <div class="form-group">
                                           <label class="checkbox-list">
-                                             <input type="checkbox" name="s">
+                                             <input type="checkbox" name="select" >
                                              <span class="custom-checkbox"></span>
-                                             Insurance 
+                                             Insurance
                                           </label>
                                        </div>
                                     </div>
                                     <div class="col-sm-6">
                                        <div class="form-group">
                                           <label class="checkbox-list">
-                                             <input type="checkbox" name="s">
+                                             <input type="checkbox" name="select" >
                                              <span class="custom-checkbox"></span>
                                              Dinner
                                           </label>
@@ -318,46 +328,103 @@
                                     <div class="col-sm-6">
                                        <div class="form-group">
                                           <label class="checkbox-list">
-                                             <input type="checkbox" name="s">
+                                             <input type="checkbox" name="select" >
                                              <span class="custom-checkbox"></span>
                                              Bike rent
                                           </label>
                                        </div>
                                     </div>
-                                    <div class="col-sm-12">
-                                       <div class="form-group submit-btn">
-                                           <a href="/booking/" class="button-primary">BOOK NOW</a>
-                                         <a href="/tour-cart/" class="button-primary">Add To Card</a>
-                                       </div>
-                                    </div>
+                                    <div class="widget-bg widget-table-summary">
+                              <h4 class="bg-title">Summary</h4>
+                              <table>
+                                 <tbody>
+                                    <tr>
+                                       <td>
+                                          <strong>Packages cost </strong>
+                                       </td>
+                                       <td class="text-right">
+                                          {{ price }}
+                                       </td>
+                                    </tr>
+                                    <tr>
+                                       <td>
+                                          <strong>Dedicated tour guide</strong>
+                                       </td>
+                                       <td class="text-right">
+                                          {{ tour_guide }}
+                                       </td>
+                                    </tr>
+                                    <tr>
+                                       <td>
+                                          <strong>Insurance</strong>
+                                       </td>
+                                       <td class="text-right">
+                                          {{ insurance }}
+                                       </td>
+                                    </tr>
+                                    <tr>
+                                       <td>
+                                          <strong>tax</strong>
+                                       </td>
+                                       <td class="text-right">
+                                         {{ tax }}
+                                       </td>
+                                    </tr>
+                                    <tr class="total">
+                                       <td>
+                                          <strong>Total cost</strong>
+                                       </td>
+                                       <td class="text-right">
+                                          <strong>{{ total_cost1  }}</strong>
+                                       </td>
+                                    </tr>
+                                 </tbody>
+                              </table>
+                           </div>
+
+
+<!--                                    <div class="col-sm-12">-->
+<!--                                       <div class="form-group submit-btn">-->
+<!--                                           <a href="/booking/" class="button-primary">BOOK NOW</a>-->
+<!--                                         <a href="/tour-cart/" class="button-primary">Add To Card</a>-->
+<!--                                       </div>-->
+<!--                                    </div>-->
                                  </div>
+
+
+
+                                  <button class="button-primary">submit</button>
                               </form>
+
+
                            </div>
-                           <div class="widget-bg information-content text-center">
-                              <h5>TRAVEL TIPS</h5>
-                              <h3>NEED TRAVEL RELATED TIPS & INFORMATION</h3>
-                              <p>Mollit voluptatem perspiciatis convallis elementum corporis quo veritatis aliquid blandit, blandit torquent, odit placeat. </p>
-                              <a href="#" class="button-primary">GET A QUOTE</a>
-                           </div>
-                           <div class="travel-package-content text-center" style="background-image: url(/static/assets/images/img11.jpg);">
-                              <h5>MORE PACKAGES</h5>
-                              <h3>OTHER TRAVEL PACKAGES</h3>
-                              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus.</p>
-                              <ul>
-                                 <li>
-                                    <a href="#"><i class="far fa-arrow-alt-circle-right"></i>Vacation packages</a>
-                                 </li>
-                                 <li>
-                                    <a href="#"><i class="far fa-arrow-alt-circle-right"></i>Honeymoon packages</a>
-                                 </li>
-                                 <li>
-                                    <a href="#"><i class="far fa-arrow-alt-circle-right"></i>New year packages</a>
-                                 </li>
-                                 <li>
-                                    <a href="#"><i class="far fa-arrow-alt-circle-right"></i>Weekend packages</a>
-                                 </li>
-                              </ul>
-                           </div>
+
+<!--                           <div class="widget-bg information-content text-center">-->
+<!--                              <h5>TRAVEL TIPS</h5>-->
+<!--                              <h3>NEED TRAVEL RELATED TIPS & INFORMATION</h3>-->
+<!--                              <p>Mollit voluptatem perspiciatis convallis elementum corporis quo veritatis aliquid blandit, blandit torquent, odit placeat. </p>-->
+<!--                              <a href="#" class="button-primary">GET A QUOTE</a>-->
+<!--                           </div>-->
+<!--                           <div class="travel-package-content text-center" style="background-image: url(/static/assets/images/img11.jpg);">-->
+<!--                              <h5>MORE PACKAGES</h5>-->
+<!--                              <h3>OTHER TRAVEL PACKAGES</h3>-->
+<!--                              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus.</p>-->
+<!--                              <ul>-->
+<!--                                 <li>-->
+<!--                                    <a ><i class="far fa-arrow-alt-circle-right"></i>Vacation packages</a>-->
+<!--                                 </li>-->
+<!--                                 <li>-->
+<!--                                    <a ><i class="far fa-arrow-alt-circle-right"></i>Honeymoon packages</a>-->
+<!--                                 </li>-->
+<!--                                 <li>-->
+<!--                                    <a ><i class="far fa-arrow-alt-circle-right"></i>New year packages</a>-->
+<!--                                 </li>-->
+<!--                                 <li>-->
+<!--                                    <a ><i class="far fa-arrow-alt-circle-right"></i>Weekend packages</a>-->
+<!--                                    <a ><i class="far fa-arrow-alt-circle-right"></i>Weekend packages</a>-->
+<!--                                 </li>-->
+<!--                              </ul>-->
+<!--                           </div>-->
                         </div>
                      </div>
                   </div>

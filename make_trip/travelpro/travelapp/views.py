@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render,HttpResponse
 from .models import Destination,Package,Offer
+from .models import Booking,Payment
 
 # Create your views here.
 def index(request):
@@ -31,8 +32,9 @@ def blog_single(request):
     return render(request,'blog-single.html')
 
 
-def booking(request):
-    return render(request,'booking.html')
+def booking(request,id):
+    pay = Payment.objects.filter(pyment=id)
+    return render(request,'booking.html',{'pay':pay})
 
 def career(request):
     return render(request,'career.html')
@@ -51,7 +53,11 @@ def contact(request):
 
 def destination(request):
     d = Destination.objects.all()
-    return render(request,'destination.html',{'d':d})
+    data = Package.objects.filter()
+    location = ''
+    if data:
+        location = data[0].destination.location_name
+    return render(request,'destination.html',{'d':d,'data':data, 'location_name': location})
 
 
 
@@ -64,8 +70,23 @@ def gallery(request):
 def index_v2(request):
     return render(request,'index-v2.html')
 
-def package_detail(request):
-    return render(request,'package-detail.html')
+def package_detail(request,id):
+    data = Package.objects.filter(id=id)
+    price = ''
+    if data:
+        price = data[0].price
+        print("ssss///", price)
+    if data:
+        tour_guide = data[0].tour_guide
+    if data:
+        insurance = data[0].insurance
+    if data:
+        tax = data[0].tax
+    if data:
+        total_cost1 = float(price) + float(tour_guide)+ float(insurance)+ float(tax)
+        print("dddd///",total_cost1)
+        data[0].total_cost1 = total_cost1
+    return render(request,'package-detail.html',{'data':data,'price':price,'tour_guide':tour_guide,'insurance':insurance,'tax':tax,'total_cost1':total_cost1})
 
 def package_offer(request):
     return render(request,'package-offer.html')
@@ -152,8 +173,14 @@ def user_edit(request):
     return render(request,'user-edit.html')
 
 
-def usa(request):
-    return render(request,'usa.html')
+def usa(request,id):
+    print("fdf/f/f//",id)
+    data = Package.objects.filter(destination=id)
+    location = ''
+    if data:
+        location = data[0].destination.country_name
+        print("ssss///", location)
+    return render(request,'usa.html',{'data':data, 'location_name': location})
 def indonesia(request):
     return render(request,'indonesia.html')
 
@@ -176,6 +203,54 @@ def singapore(request):
 
 def dubai(request):
     return render(request,'dubai.html')
+
+
+def DestinationDtail(request,destination):
+    return HttpResponse(destination)
+
+
+def savedata(request,id):
+    if request.method == "POST":
+        name = request.POST['name']
+        email = request.POST['email']
+        number = request.POST['number']
+        select = request.POST['select']
+        booking_date = request.POST['booking_date']
+        print("dd///",name,email,number,select)
+        my_model = Booking(name=name,email=email,number=number,select=select,booking_date=booking_date)
+        my_model.save()
+        print("dffd///",my_model)
+    data = Package.objects.filter(id=id)
+    price = float(data[0].price) + float(data[0].insurance) +  float(data[0].tax) + float(data[0].tour_guide)
+    return render(request,'booking.html',{'my_model':my_model,'data':data, 'price': price})
+
+
+
+def confirm(request,id):
+    if request.method == "POST":
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        number = request.POST.get('number')
+        card_name = request.POST.get('card_name')
+        card_number = request.POST.get('card_number')
+        month = request.POST.get('month')
+        year = request.POST.get('year')
+        cvv_code = request.POST.get('cvv_code')
+        country = request.POST.get('country')
+        street1 = request.POST.get('street1')
+        street2 = request.POST.get('street2')
+        city = request.POST.get('city')
+        state = request.POST.get('state')
+        postal_code = request.POST.get('postal_code')
+        add_information = request.POST.get('add_information')
+        if request.POST.get('name'):
+            my_confirm = Payment.objects.create(name=name,email=email,number=number,card_name=card_name,card_number=card_number,month=month,year=year,cvv_code=cvv_code,country=country,street1=street1,street2=street2,city=city,state=state,postal_code=postal_code,add_information=add_information)
+            my_confirm.save()
+    data = Package.objects.filter(id=id)
+    price = float(data[0].price) + float(data[0].insurance) + float(data[0].tax) + float(data[0].tour_guide)
+    return render(request,'confirmation.html',{'my_confirm': my_confirm,'data':data, 'price': price})
+
+
 
 
 

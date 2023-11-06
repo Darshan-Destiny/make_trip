@@ -87,11 +87,11 @@
                                        <img src="{{i.image.url}}" alt="">
                                     </figure>
                                     <div class="meta-cat bg-meta-cat">
-                                       <a href="/usa/">{{i.country_name}}</a>
+                                       <a href="/usa/{{i.id}}">{{i.country_name}}</a>
                                     </div>
                                     <div class="desti-content">
                                        <h3>
-                                          <a href="#">{{i.location_name}}</a>
+                                          <a>{{i.location_name}}</a>
                                        </h3>
                                        <div class="rating-start" title="Rated 5 out of 4">
                                           <span style="width: 53%"></span>
@@ -186,13 +186,13 @@
                         <div class="col-lg-4 col-md-6">
                            <div class="package-wrap">
                               <figure class="feature-image">
-                                 <a href="/package-detail/">
+                                 <a href="/package-detail/{{i.id}}">
                                     <img src="{{i.image.url}}" alt="">
                                  </a>
                               </figure>
                               <div class="package-price">
                                  <h6>
-                                    <span>{{i.price}} </span> / per person
+                                    <span>${{i.price}} </span>
                                  </h6>
                               </div>
                               <div class="package-content-wrap">
@@ -214,7 +214,7 @@
                                  </div>
                                  <div class="package-content">
                                     <h3>
-                                       <a href="#">{{i.desc}}</a>
+                                       <a href="/package-detail/{{i.id}}">{{i.desc}}</a>
                                     </h3>
                                     <div class="review-area">
                                        <span class="review-text">(25 reviews)</span>
@@ -224,8 +224,8 @@
                                     </div>
                                     <p>{{i.detail_desc}}</p>
                                     <div class="btn-wrap">
-                                       <a href="/package-detail/" class="button-text width-6">Book Now<i class="fas fa-arrow-right"></i></a>
-                                       <a href="#" class="button-text width-6">Wish List<i class="far fa-heart"></i></a>
+                                       <a href="/package-detail/{{i.id}}" class="button-text width-6">Book Now<i class="fas fa-arrow-right"></i></a>
+<!--                                       <a href="#" class="button-text width-6">Wish List<i class="far fa-heart"></i></a>-->
                                     </div>
                                  </div>
                               </div>

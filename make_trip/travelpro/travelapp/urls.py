@@ -20,7 +20,7 @@ urlpatterns = [
     path('faq/',views.faq, name='faq'),
     path('gallery/',views.gallery, name='gallery'),
     path('index-v2/',views.index_v2, name='index-v2'),
-    path('package-detail/',views.package_detail, name='package-detail'),
+    path('package-detail/<int:id>',views.package_detail, name='package-detail'),
     path('package-offer/',views.package_offer, name='package-offer'),
     path('product-cart/',views.product_cart, name='product-cart'),
     path('product-checkout/',views.product_checkout, name='product-checkout'),
@@ -48,7 +48,7 @@ urlpatterns = [
     path('new-user/',views.new_user, name='new-user'),
     path('user/',views.user, name='user'),
     path('user-edit/',views.user_edit, name='user-edit'),
-    path('usa/',views.usa, name='usa'),
+    path('usa/<int:id>',views.usa, name='usa'),
     path('japan/',views.japan, name='japan'),
     path('new_zealand/',views.new_zealand, name='new_zealand'),
     path('singapore/',views.singapore, name='singapore'),
@@ -56,4 +56,9 @@ urlpatterns = [
     path('india/',views.india, name='india'),
     path('toronto/',views.toronto, name='toronto'),
     path('dubai/',views.dubai, name='dubai'),
+    path('thailand/',views.thailand, name='thailand'),
+    # path('usa/<destination>',views.DestinationDtail),
+    path('savedata/<int:id>', views.savedata, name='savedata'),
+    path('confirm/<int:id>', views.confirm, name='confirm'),
+
 ]

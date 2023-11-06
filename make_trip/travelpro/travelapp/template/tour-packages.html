@@ -21,7 +21,7 @@
                         <div class="col-lg-4 col-md-6">
                            <div class="package-wrap">
                               <figure class="feature-image">
-                                 <a href="/package-detail/">
+                                 <a href="/package-detail/{{i.id}}">
                                     <img src="{{i.image.url}}" alt="">
                                  </a>
                               </figure>
@@ -35,7 +35,7 @@
                                     <ul>
                                        <li>
                                           <i class="far fa-clock"></i>
-                                          {{i.no_of_day}}Day
+                                          {{i.no_of_day}}D/{{i.no_of_night}}N
                                        </li>
                                        <li>
                                           <i class="fas fa-user-friends"></i>
@@ -59,7 +59,7 @@
                                     </div>
                                     <p>{{i.detail_desc}}</p>
                                     <div class="btn-wrap">
-                                       <a href="/package-detail/" class="button-text width-6">Book Now<i class="fas fa-arrow-right"></i></a>
+                                       <a href="/package-detail/{{i.id}}" class="button-text width-6">Book Now<i class="fas fa-arrow-right"></i></a>
                                        <a href="#" class="button-text width-6">Wish List<i class="far fa-heart"></i></a>
                                     </div>
                                  </div>
