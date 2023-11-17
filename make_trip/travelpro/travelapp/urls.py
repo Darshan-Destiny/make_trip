@@ -23,7 +23,8 @@ urlpatterns = [
     path('package-detail/<int:id>',views.package_detail, name='package-detail'),
     path('package-offer/',views.package_offer, name='package-offer'),
     path('product-cart/',views.product_cart, name='product-cart'),
-    path('product-checkout/',views.product_checkout, name='product-checkout'),
+    # path('product-cart/<int:id>',views.pro_cart, name='pro-cart'),
+    path('product-checkout/<int:id>',views.product_checkout, name='product-checkout'),
     path('product-detail/',views.product_detail, name='product-detail'),
     path('product-right/',views.product_right, name='product-right'),
     path('search-page/',views.search_page, name='search-page'),
@@ -60,5 +61,6 @@ urlpatterns = [
     # path('usa/<destination>',views.DestinationDtail),
     path('savedata/<int:id>', views.savedata, name='savedata'),
     path('confirm/<int:id>', views.confirm, name='confirm'),
+    path('update_item/', views.updateItem, name='update_item'),
 
 ]

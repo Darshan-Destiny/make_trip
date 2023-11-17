@@ -24,7 +24,8 @@
                                  <h2>CONTACT US TO GET MORE INFO</h2>
                                  <p>Aperiam sociosqu urna praesent, tristique, corrupti condimentum asperiores platea ipsum ad arcu. Nostrud. Esse? Aut nostrum, ornare quas provident laoreet nesciunt odio voluptates etiam, omnis.</p>
                               </div>
-                              <form class="contact-from">
+                              <form class="contact-from" action="{% url 'contact' %}" method="post">
+                                 {% csrf_token %}
                                  <p>
                                     <input type="text" name="name" placeholder="Your Name*">
                                  </p>
@@ -32,12 +33,18 @@
                                     <input type="email" name="email" placeholder="Your Email*">
                                  </p>
                                  <p>
-                                    <textarea rows="8" placeholder="Your Message*"></textarea>
+                                    <textarea rows="8" name="message" placeholder="Your Message*"></textarea>
                                  </p>
                                  <p>
-                                    <input type="submit" name="submit" value="SUBMIT MESSAGE">
+                                    <button class="button-primary">submit</button>
                                  </p>
                               </form>
+
+                              <div>
+                                 {% for message in messages %}
+                                 <h3>{{message}}</h3>
+                                 {% endfor %}
+                              </div>
                            </div>
                         </div>
                         <div class="col-md-6">

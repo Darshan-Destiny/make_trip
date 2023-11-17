@@ -83,9 +83,13 @@
                                 {% for i in d %}
                               <div class="col-sm-3">
                                  <div class="desti-item overlay-desti-item">
+                                    <a href="/usa/{{i.id}}">
                                     <figure class="desti-image">
+
                                        <img src="{{i.image.url}}" alt="">
+
                                     </figure>
+                                       </a>
                                     <div class="meta-cat bg-meta-cat">
                                        <a href="/usa/{{i.id}}">{{i.country_name}}</a>
                                     </div>

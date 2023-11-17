@@ -16,6 +16,7 @@
                <div class="container">
                   <div class="cart-list-inner">
                      <form action="#">
+
                         <div class="table-responsive">
                           <table class="table">
                             <thead>
@@ -28,76 +29,45 @@
                               </tr>
                             </thead>
                             <tbody>
+                            {% for item in items %}
                               <tr>
                                 <td class="">
                                   <button class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-                                  <span class="cartImage"><img src="assets/images/product1.jpg" alt="image"></span>
+                                  <span class="cartImage"><img src="{{item.product.imageURL}}" alt="image"></span>
                                 </td>
-                                <td data-column="Product Name">Sleeping bag</td>
-                                <td data-column="Price">$ 99.00</td>
+                                <td data-column="Product Name">{{item.product.product_name}}</td>
+                                <td data-column="Price">$ {{item.product.product_price_org}}</td>
                                 <td data-column="Quantity" class="count-input">
                                     <div>
                                        <a class="minus-btn" href="#"><i class="fa fa-minus"></i></a>
-                                       <input class="quantity" type="text" value="1">
+                                       <input class="quantity" type="text" value="{{item.quantity}}">
                                        <a class="plus-btn" href="#"><i class="fa fa-plus"></i></a>
                                     </div>
                                 </td>
-                                <td data-column="Sub Total">$ 99.00</td>
+                                <td data-column="Sub Total">$ {{item.get_total}}</td>
                               </tr>
-                            </tbody>
-                            <tr>
-                                <td class="">
-                                  <button class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-                                  <span class="cartImage"><img src="assets/images/product2.jpg" alt="image"></span>
-                                </td>
-                                <td data-column="Product Name">Jacket</td>
-                                <td data-column="Price">$ 99.00</td>
-                                <td data-column="Quantity" class="count-input">
-                                    <div>
-                                       <a class="minus-btn" href="#"><i class="fa fa-minus"></i></a>
-                                       <input class="quantity" type="text" value="1">
-                                       <a class="plus-btn" href="#"><i class="fa fa-plus"></i></a>
-                                    </div>
-                                </td>
-                                <td data-column="Sub Total">$ 99.00</td>
-                              </tr>
-                            </tbody>
-                            <tr>
-                                <td class="">
-                                  <button class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-                                  <span class="cartImage"><img src="assets/images/product3.jpg" alt="image"></span>
-                                </td>
-                                <td data-column="Product Name">Hammock</td>
-                                <td data-column="Price">$ 99.00</td>
-                                <td data-column="Quantity" class="count-input">
-                                    <div>
-                                       <a class="minus-btn" href="#"><i class="fa fa-minus"></i></a>
-                                       <input class="quantity" type="text" value="1">
-                                       <a class="plus-btn" href="#"><i class="fa fa-plus"></i></a>
-                                    </div>
-                                </td>
-                                <td data-column="Sub Total">$ 99.00</td>
-                              </tr>
+                             {% endfor %}
                             </tbody>
                           </table>
                         </div>
-                        <div class="updateArea">
-                          <div class="input-group">
-                              <input type="text" class="form-control" placeholder="I have a discount coupon">
-                              <a href="#" class="button-primary">apply coupon</a>
-                          </div>
-                           <a href="#" class="outline-primary update-btn">update cart</a>
-                        </div>
+<!--                        <div class="updateArea">-->
+<!--                          <div class="input-group">-->
+<!--                              <input type="text" class="form-control" placeholder="I have a discount coupon">-->
+<!--                              <a href="#" class="button-primary">apply coupon</a>-->
+<!--                          </div>-->
+<!--                           <a href="#" class="outline-primary update-btn">update cart</a>-->
+<!--                        </div>-->
                         <div class="totalAmountArea">
                            <ul class="list-unstyled">
-                              <li><strong>Sub Total</strong> <span>$ 792.00</span></li>
-                              <li><strong>Vat</strong> <span>$ 18.00</span></li>
-                              <li><strong>Grand Total</strong> <span class="grandTotal">$ 810.00</span></li>
+                              <li><strong>Item</strong> <span>{{order.get_cart_items}}</span></li>
+<!--                              <li><strong>Vat</strong> <span>$ 18.00</span></li>-->
+                              <li><strong>Grand Total</strong> <span class="grandTotal">$ {{order.get_cart_total}}</span></li>
                            </ul>
                         </div>
                         <div class="checkBtnArea text-right">
-                          <a href="#" class="button-primary">checkout</a>
+                          <a href="/product-checkout/{{i.id}}" class="button-primary">checkout</a>
                         </div>
+
                       </form>
                   </div>
                </div>

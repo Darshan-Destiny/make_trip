@@ -1,6 +1,7 @@
 from django.db import models
 from datetime import datetime
 
+from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 from django.core.validators import RegexValidator
@@ -79,6 +80,29 @@ class Payment(models.Model):
 
 
 
+
+
+
+class Contact(models.Model):
+    name = models.CharField(max_length=20)
+    email = models.EmailField()
+    message = models.CharField(max_length=200)
+
+    class Meta:
+        db_table = 'Contact'
+
+
+
+class Customer(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name = 'customer', null=True, blank=True)
+    name = models.CharField(max_length=200, null=True)
+    email = models.CharField(max_length=200, null=True)
+
+
+    def __str__(self):
+        return self.name
+
+
 class Booking(models.Model):
 
 
@@ -92,13 +116,10 @@ class Booking(models.Model):
                 params={"value": value},
             )
 
-
-
-
+    customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True, blank=True)
     payment = models.ForeignKey(Payment,on_delete=models.CASCADE,null=True,blank=True)
     package = models.ForeignKey(Package,on_delete=models.CASCADE,null=True,blank=True)
     name = models.CharField(max_length=20)
-    new = models.CharField(max_length=20,default='dinner')
     email = models.EmailField()
     number = models.IntegerField(validators=[validate_even])
     option = (('tour_guide','tour_guide'),
@@ -106,7 +127,7 @@ class Booking(models.Model):
                   ('dinner','dinner'),
                   ('bike_rent','bike_rent'),)
     select = models.CharField(max_length=10,choices=option,default='dinner')
-    booking_date = models.DateField(default=datetime.now())
+    booking_date = models.DateTimeField(auto_now_add=True)
 
 
 
@@ -118,13 +139,75 @@ class Booking(models.Model):
 
 
 
-class Contact(models.Model):
-    name = models.CharField(max_length=20)
-    email = models.EmailField()
-    message = models.CharField(max_length=200)
+class Shop(models.Model):
+    image = models.FileField()
+    product_name = models.CharField(max_length=20)
+    product_price_del = models.IntegerField()
+    product_price_org = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.product_name
+
+    @property
+    def imageURL(self):
+        try:
+            url = self.image.url
+        except:
+            url = ''
+        return url
 
     class Meta:
-        db_table = 'Contact'
+        db_table = 'Shop'
+
+
+class Order(models.Model):
+    customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True, blank=True)
+    date_order = models.DateTimeField(auto_now_add=True)
+    complete = models.BooleanField(default=False,null=True,blank=False)
+    transaction_id = models.CharField(max_length=200, null=True)
+
+    def __str__(self):
+        return str(self.id)
+
+    @property
+    def get_cart_total(self):
+        orderitems = self.orderitem_set.all()
+        total = sum([item.get_total for item in orderitems])
+        return total
+
+    @property
+    def get_cart_items(self):
+        orderitems = self.orderitem_set.all()
+        total = sum([item.quantity for item in orderitems])
+        return total
+
+class OrderItem(models.Model):
+    product = models.ForeignKey(Shop,on_delete=models.SET_NULL, null=True, blank=True)
+    order = models.ForeignKey(Order,on_delete=models.SET_NULL, null=True, blank=True)
+    quantity = models.IntegerField(default=0, null=True, blank=True)
+    date_added = models.DateTimeField(auto_now_add=True)
+
+
+    @property
+    def get_total(self):
+        total = self.product.product_price_org * self.quantity
+        return total
+
+
+
+
+class ShippingAddress(models.Model):
+    customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True, blank=True)
+    order = models.ForeignKey(Order,on_delete=models.SET_NULL, null=True, blank=True)
+    address = models.CharField(max_length=200, null=True)
+    city = models.CharField(max_length=200, null=True)
+    state = models.CharField(max_length=200, null=True)
+    zipcode = models.CharField(max_length=200, null=True)
+    date_added = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.address
+
 
 
 

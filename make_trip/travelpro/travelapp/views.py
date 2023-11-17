@@ -1,6 +1,9 @@
+import json
 from django.shortcuts import render,HttpResponse
 from .models import Destination,Package,Offer
-from .models import Booking,Payment
+from .models import Booking,Payment,Contact,Shop,Order,Customer,OrderItem,ShippingAddress
+from django.contrib import messages
+from django.http import JsonResponse
 
 # Create your views here.
 def index(request):
@@ -49,6 +52,16 @@ def confirmation(request):
     return render(request,'confirmation.html')
 
 def contact(request):
+    name = request.POST.get('name')
+    email = request.POST.get('email')
+    message = request.POST.get('message')
+    if name:
+        my_contact = Contact.objects.create(name=name,email=email,message=message)
+        my_contact.save()
+
+
+        messages.info(request,'Thank You For Submit')
+
     return render(request,'contact.html')
 
 def destination(request):
@@ -92,16 +105,42 @@ def package_offer(request):
     return render(request,'package-offer.html')
 
 def product_cart(request):
-    return render(request,'product-cart.html')
+    if request.user.is_authenticated:
+        customer = Customer.objects.filter(user=request.user)
+        print("fff//",customer)
 
-def product_checkout(request):
-    return render(request,'product-checkout.html')
+        items = []
+        order = {'get_cart_total':0, 'get_cart_items':0}
+        if customer:
+            order, created = Order.objects.get_or_create(customer=customer[0], complete=False)
+            items = order.orderitem_set.all()
+    return render(request,'product-cart.html',{'items':items,'order':order})
+
+
+# def pro_cart(request,id):
+#     data = OrderItem.objects.filter(product=id)
+#     print("ggggf///",data)
+#     if request.user.is_authenticated:
+#         customer = Customer.objects.filter(user=request.user)
+#         print("fff//",customer)
+#         order, created = Order.objects.get_or_create(customer=customer[0], complete=False)
+#         items = order.orderitem_set.all()
+#     else:
+#         items = []
+#         order = {'get_cart_total':0, 'get_cart_items':0}
+#     return render(request,'product-cart.html',{'items':data,'order':order})
+
+
+def product_checkout(request,id):
+    data = ShippingAddress.objects.filter(customer=id)
+    return render(request,'product-checkout.html',{'data':data})
 
 def product_detail(request):
     return render(request,'product-detail.html')
 
 def product_right(request):
-    return render(request,'product-right.html')
+    product = Shop.objects.all()
+    return render(request,'product-right.html',{'product':product})
 
 def search_page(request):
     return render(request,'search-page.html')
@@ -251,7 +290,37 @@ def confirm(request,id):
     return render(request,'confirmation.html',{'my_confirm': my_confirm,'data':data, 'price': price})
 
 
+def updateItem(request):
+    data = json.loads(request.body)
+    # try:
+    #     data = json.loads(request.body)
+    #     print('ffdfdfdf//',data)
+    # except json.decoder.JSONDecodeError:
+    #     # 👇️ this runs
+    #     print('The string does NOT contain valid JSON')
+    productId = data['productId']
+    action = data['action']
 
+    print('Action:', action)
+    print('productId:', productId)
+
+
+    customer = request.user.customer
+    product = Shop.objects.get(id=productId)
+    order, created = Order.objects.get_or_create(customer=customer[0], complete=False)
+
+    orderItem, created = OrderItem.ojects.get_or_create(order=order, product=product)
+
+    if action == 'add':
+        orderItem.quantity = (orderItem.quantity + 1)
+    elif action == 'remove':
+        orderItem.quantity = (orderItem.quantity - 1)
+    orderItem.save()
+
+    if orderItem.quantity <= 0:
+        orderItem.delete()
+
+    return JsonResponse('Item was added', safe=False)
 
 
 
