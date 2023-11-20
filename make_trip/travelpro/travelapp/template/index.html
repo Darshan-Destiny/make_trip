@@ -749,6 +749,7 @@
                      </div>
                   </div>
                   <div class="row">
+                     {% for blog in b %}
                      <div class="col-md-6 col-lg-4">
                         <article class="post">
                            <figure class="feature-image">
@@ -758,7 +759,7 @@
                            </figure>
                            <div class="entry-content">
                               <h3>
-                                 <a href="#">Life is a beautiful journey not a destination</a>
+                                 <a href="#">{{blog.title}}</a>
                               </h3>
                               <div class="entry-meta">
                                  <span class="byline">
@@ -771,6 +772,7 @@
                                     <a href="#">No Comments</a>
                                  </span>
                               </div>
+                              {% endfor %}
                            </div>
                         </article>
                      </div>

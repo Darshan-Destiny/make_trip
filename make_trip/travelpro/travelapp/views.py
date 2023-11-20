@@ -1,7 +1,7 @@
 import json
 from django.shortcuts import render,HttpResponse
 from .models import Destination,Package,Offer
-from .models import Booking,Payment,Contact,Shop,Order,Customer,OrderItem,ShippingAddress
+from .models import Booking,Payment,Contact,Shop,Order,Customer,OrderItem,ShippingAddress, Post
 from django.contrib import messages
 from django.http import JsonResponse
 
@@ -10,7 +10,8 @@ def index(request):
     d = Destination.objects.all()[:4]
     p = Package.objects.all()[:3]
     o = Offer.objects.all()
-    return render(request,'index.html',{'d':d,'p':p,'o':o})
+    b = Post.objects.all()
+    return render(request,'index.html',{'d':d,'p':p,'o':o,'b':b})
 
 def index2(request):
     return render(request,'index2.html')

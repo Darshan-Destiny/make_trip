@@ -1,4 +1,5 @@
 from django.contrib import admin
+from .models import Post
 from .models import Destination,Package,Offer,Booking,Payment,Contact,Customer,Shop,Order,OrderItem,ShippingAddress
 
 # Register your models here.
@@ -13,4 +14,5 @@ admin.site.register(Shop)
 admin.site.register(Order)
 admin.site.register(OrderItem)
 admin.site.register(ShippingAddress)
+admin.site.register(Post)
 
